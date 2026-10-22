@@ -15,18 +15,65 @@
 
 <body>
     <nav>
-        <div class="w">
+        <div class="w nav-in">
             <a class="brand" href="#top"><img src="images/gallery/logo.png" alt="Subash Group of Institutions logo"
-                    onerror="this.style.display='none'"></a>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="#institutions">Institutions</a></li>
-                <li><a href="#apply">Admissions</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a class="btn b-coral" style="padding:9px 20px" href="#apply">Apply now</a>
+                    onerror="this.style.display='none'"><span class="bt"><b>Subash</b><small>Group of
+                        Institutions</small></span></a>
+
+            <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"
+                aria-controls="menu"><span></span><span></span><span></span></button>
+
+            <div class="menu" id="menu">
+                <ul>
+                    <li class="has-sub">
+                        <div class="row"><a href="about.php">About</a><button class="arr" aria-label="Show About links"
+                                aria-expanded="false"></button></div>
+                        <ul class="sub">
+                            <li><a href="about.php">About Us</a></li>
+                            <li><a href="chairman.php">Chairman Message</a></li>
+                            <li><a href="trust.php">Trustee</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <div class="row"><a href="#courses">Courses</a><button class="arr"
+                                aria-label="Show Courses links" aria-expanded="false"></button></div>
+                        <ul class="sub">
+                            <li><a href="msc.php">M.Sc. Nursing</a></li>
+                            <li><a href="pbbsc.php">PB B.Sc. Nursing</a></li>
+                            <li><a href="bsc.php">B.Sc. Nursing</a></li>
+                            <li><a href="gnm.php">GNM Nursing</a></li>
+                            <li><a href="diploma-in-pharmacy.php">Diploma in Pharmacy</a></li>
+                            <li><a href="bsc-medical-imaging.php">B.Sc. Medical Imaging Technology</a></li>
+                            <li><a href="diploma-ot-technology.php">Diploma in O.T. Technology</a></li>
+                            <li><a href="diploma-ophtholmic.php">Diploma in Ophthalmic Technic</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="admissions.php">Admissions</a></li>
+                    <li class="has-sub">
+                        <div class="row"><a href="#institutions">Institutions</a><button class="arr"
+                                aria-label="Show Institutions links" aria-expanded="false"></button></div>
+                        <ul class="sub">
+                            <li><a href="#">Subash College of Pharmacy</a></li>
+                            <li><a href="school.php">Subash School of Nursing</a></li>
+                            <li><a href="college.php">Subash College of Nursing</a></li>
+                            <li><a href="smc.php">Subash Hospital</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <div class="row"><a href="ch-facilities.php">Facilities</a><button class="arr"
+                                aria-label="Show Facilities links" aria-expanded="false"></button></div>
+                        <ul class="sub">
+                            <li><a href="ch-facilities.php">Campus &amp; Hostel</a></li>
+                            <li><a href="pc-facilities.php">Placement &amp; Clinical</a></li>
+                            <li><a href="affiliation.php">Affiliation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a class="btn b-coral" href="#apply">Apply now</a>
+            </div>
+            <div class="scrim" id="scrim"></div>
         </div>
     </nav>
 
@@ -201,6 +248,41 @@
                 </div>
                 <div class="map"><iframe title="Subash Group of Institutions map" loading="lazy"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.331625877804!2d77.45762801490953!3d12.691764991039886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae44ad6c268d41%3A0x476b55ded4b93eae!2sSubash+Group+of+Institution!5e0!3m2!1sen!2sin!4v1526897050900"></iframe>
+                </div>
+            </div>
+            <div class="fnav">
+                <div>
+                    <a href="#">About</a>
+                    <!-- <a href="about.php">About Us</a>
+                    <a href="chairman.php">Chairman Message</a>
+                    <a href="trust.php">Trustee</a>
+                    <a href="affiliation.php">Affiliation</a> -->
+                </div>
+                <div>
+                    <a href="#">Courses</a>
+                    <!-- <a href="msc.php">M.Sc. Nursing</a> -->
+                    <!-- <a href="pbbsc.php">PB B.Sc. Nursing</a>
+                    <a href="bsc.php">B.Sc. Nursing</a>
+                    <a href="gnm.php">GNM Nursing</a>
+                    <a href="diploma-in-pharmacy.php">Diploma in Pharmacy</a>
+                    <a href="bsc-medical-imaging.php">B.Sc. Medical Imaging Technology</a>
+                    <a href="diploma-ot-technology.php">Diploma in O.T. Technology</a>
+                    <a href="diploma-ophtholmic.php">Diploma in Ophthalmic Technic</a> -->
+                </div>
+                <div>
+                    <a href="#">Institutions</a>
+                    <!-- <a href="#">Subash College of Pharmacy</a>
+                    <a href="school.php">Subash School of Nursing</a>
+                    <a href="college.php">Subash College of Nursing</a>
+                    <a href="smc.php">Subash Hospital</a> -->
+                </div>
+                <div>
+                    <a href="#">Explore</a>
+                    <!-- <a href="admissions.php">Admissions</a>
+                    <a href="ch-facilities.php">Campus &amp; Hostel</a>
+                    <a href="pc-facilities.php">Placement &amp; Clinical</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#contact">Contact</a> -->
                 </div>
             </div>
             <div class="mega" aria-hidden="true">SUBASH GROUP</div>

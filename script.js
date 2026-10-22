@@ -95,3 +95,30 @@ var done = 0; new IntersectionObserver(function (en, o) {
   if (!en[0].isIntersecting || done) return; done = 1; o.disconnect();
   document.querySelectorAll('[data-n]').forEach(function (el) { var t = +el.dataset.n, t0 = null; (function f(t1) { t0 = t0 || t1; var p = Math.min((t1 - t0) / 1400, 1); el.textContent = Math.round(t * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f) })(performance.now()) })
 }, { threshold: .4 }).observe(document.querySelector('.vitals'));
+/* menu: hamburger + arrow dropdowns */
+(function(){
+  var burger=document.getElementById('burger'),menu=document.getElementById('menu'),scrim=document.getElementById('scrim');
+  function setMenu(open){
+    menu.classList.toggle('open',open);burger.classList.toggle('on',open);scrim.classList.toggle('on',open);
+    burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    document.body.style.overflow=open?'hidden':'';
+  }
+  burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
+  scrim.addEventListener('click',function(){setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+  document.querySelectorAll('.arr').forEach(function(b){
+    b.addEventListener('click',function(){
+      var li=b.closest('.has-sub'),open=!li.classList.contains('open');
+      document.querySelectorAll('.has-sub.open').forEach(function(o){
+        if(o!==li){o.classList.remove('open');o.querySelector('.arr').setAttribute('aria-expanded','false')}
+      });
+      li.classList.toggle('open',open);b.setAttribute('aria-expanded',open);
+    });
+  });
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  window.addEventListener('resize',function(){if(window.innerWidth>1200)setMenu(false)});
+  document.addEventListener('click',function(e){
+    if(window.innerWidth>1200&&!e.target.closest('.has-sub'))
+      document.querySelectorAll('.has-sub.open').forEach(function(o){o.classList.remove('open')});
+  });
+})();
