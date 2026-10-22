@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTART:20261017T053000Z
+DTEND:20261017T080000Z
+DTSTAMP:20261014T104209Z
+ORGANIZER;CN="P99 India":MAILTO:calendar-invite@luma-mail.com
+UID:evt-13tAOTd3eUK5smP@events.lu.ma
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=pk471
+ 1560@gmail.com;X-NUM-GUESTS=0:mailto:pk4711560@gmail.com
+SUMMARY:Engineering for the P99
+DESCRIPTION:Get up-to-date information at: https://luma.com/axj3j4gy?pk=g-
+ uPvz9NjX0hkQ63D\n\nAddress:\n43 Workspace\nBengaluru, India\n\nA practitio
+ ner-led technical community workshop bringing together performance enginee
+ rs, database specialists, SREs, platform engineers, distributed-systems pr
+ actitioners and senior engineering professionals to exchange real-world ap
+ proaches to performance, scalability, database engineering and production 
+ reliability.\n\nSpeakers are welcome to submit for presenting!\n\nHosted b
+ y Pavan Viralam
+LOCATION:43 Workspace, 232, 9th Main Rd, HRBR Layout 1st Block, 1st Block,
+  Kalyan Nagar, Bengaluru, Karnataka 560043, India
+GEO:13.017387699999999;77.64750310000001
+SEQUENCE:0
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

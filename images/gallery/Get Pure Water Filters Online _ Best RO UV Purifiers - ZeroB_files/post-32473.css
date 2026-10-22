@@ -1,0 +1,48 @@
+.elementor-32473 .elementor-element.elementor-element-062b10d{--display:flex;--flex-direction:column;--container-widget-width:100%;--container-widget-height:initial;--container-widget-flex-grow:0;--container-widget-align-self:initial;--flex-wrap-mobile:wrap;--margin-top:0px;--margin-bottom:0px;--margin-left:0px;--margin-right:0px;--padding-top:0px;--padding-bottom:0px;--padding-left:0px;--padding-right:0px;}:root{--page-title-display:none;}/* Start custom CSS */.elementor-button { position: relative; top: 0;}.elementor-button:hover {top: -7px !important;box-shadow: 0 3px 6px 0px rgba(50,50,100, .3);}
+body.home .woosc-popup, body.home #woosc-area, body.home #woosw-area { display:none !important}
+.spu-content select {border-radius: 50px;background: #fff;}
+.popup-form-innerwrapper .individual-formwrap > div p {margin-bottom: 2px;}
+.popup-form-innerwrapper .individual-formwrap > div:last-child label {display: none;}
+.popup-form-innerwrapper .individual-formwrap > div:last-child {margin-top: 5px;}
+
+
+
+/* Revamp CSS */
+.fea-pro-ctas .elementor-cta, .fea-pro-ctas .elementor-cta__content { position:unset}
+.fea-pro-ctas .elementor-cta__button-wrapper {position: absolute;bottom: 40px;}
+.fea-pro-ctas .elementor-cta__description {padding-bottom: 50px;}
+.pro-cta .elementor-cta__title {margin-left: 15%;margin-right:15%;}
+.pro-cta .elementor-cta__description {max-width: 80%;margin-left: auto;margin-right: auto;}
+.fea-pro-ctas .elementor-cta__description.elementor-cta__content-item.elementor-content-item {
+	min-height: 40px;
+}
+
+.elementor-38427 .elementor-element.elementor-element-1d49f2d .elementor-cta__title {
+	min-height: 72px;
+}
+
+@media (max-width: 1024px) {
+.pro-cta .elementor-cta__title {margin-left: 20px;margin-right: 20px;}
+}
+
+
+@media (max-width: 767px) {
+.elementor-38427 .elementor-element.elementor-element-1d49f2d .elementor-cta__title {
+
+	min-height: inherit;
+}
+
+
+.wlwl_lucky_wheel_content:not(.wlwl_lucky_wheel_content_mobile) .wheel-content-wrapper .wheel_content_left {
+	min-width: 100% !important;
+}
+.wlwl_lucky_wheel_content .wheel_content_right {
+	width: 100% !important;
+
+}
+.wheel-content-wrapper {
+	-moz-flex-direction: column;-webkit-flex-direction: column;flex-direction: column;
+}
+
+
+}/* End custom CSS */
