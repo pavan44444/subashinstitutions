@@ -538,7 +538,7 @@ h2 {
 }
 
 .inst a:hover {
-    background: var(--coral);
+    background: red;
     color: #fff;
     border-color: var(--coral);
     transform: translateY(-8px)
@@ -549,7 +549,8 @@ h2 {
 }
 
 .inst .ic {
-    font-size: 34px
+    font-size: 34px;
+
 }
 
 @media(max-width:960px) {
@@ -1259,4 +1260,57 @@ nav ul a:hover {
         height: auto;
         width: min(270px, 62vw)
     }
+}
+
+/* institutions: fixed colour per card */
+.inst a {
+    background: var(--c);
+    border-color: var(--c);
+    color: #fff
+}
+
+.inst a:nth-child(1) {
+    --c: #d62839
+}
+
+/* red    - Pharmacy */
+.inst a:nth-child(2) {
+    --c: #2563eb
+}
+
+/* blue   - School of Nursing */
+.inst a:nth-child(3) {
+    --c: #15803d
+}
+
+/* green  - College of Nursing */
+.inst a:nth-child(4) {
+    --c: #7c3aed
+}
+
+/* purple - Hospital */
+
+/* hover: colour stays the same, only the lift, shadow and icon change */
+.inst a:hover {
+    background: var(--c);
+    border-color: var(--c);
+    color: #fff;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 36px rgba(0, 0, 0, .28)
+}
+
+/* icon in a soft white circle so the emoji stands out on the colour */
+.inst .ic {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .22);
+    font-size: 32px;
+    transition: transform .35s
+}
+
+.inst a:hover .ic {
+    transform: scale(1.18) rotate(-8deg)
 }
