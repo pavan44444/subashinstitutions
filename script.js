@@ -14,56 +14,56 @@ const courses = [
     name: "B.Sc. Nursing",
     category: "Nursing",
     description: "Undergraduate degree programme in nursing.",
-    image: "images/bsc-nursing.jpg",
+    image: "images/gallery/bsc-nursing.jpg",
     link: "bsc.php"
   },
   {
     name: "M.Sc. Nursing",
     category: "Nursing",
     description: "Postgraduate programme in nursing.",
-    image: "images/msc-nursing.jpg",
+    image: "images/gallery/msc-nursing.jpg",
     link: "msc.php"
   },
   {
     name: "PB B.Sc. Nursing",
     category: "Nursing",
     description: "Post Basic B.Sc. Nursing programme.",
-    image: "images/pb-bsc-nursing.jpg",
+    image: "images/gallery/pb-bsc-nursing.jpg",
     link: "pbbsc.php"
   },
   {
     name: "GNM Nursing",
     category: "Nursing",
     description: "General Nursing and Midwifery.",
-    image: "images/gnm-nursing.jpg",
+    image: "images/gallery/gnm-nursing.jpg",
     link: "gnm.php"
   },
   {
     name: "Diploma in Pharmacy",
     category: "Pharmacy",
     description: "Build your foundation in pharmacy.",
-    image: "images/diploma-in-pharmacy.jpg",
+    image: "images/gallery/diploma-in-pharmacy.jpg",
     link: "diploma-in-pharmacy.php"
   },
   {
     name: "B.Sc. Medical Imaging",
     category: "Allied Health",
     description: "Learn medical imaging technology.",
-    image: "images/bsc-medical-imaging.jpg",
+    image: "images/gallery/bsc-medical-imaging.jpg",
     link: "bsc-medical-imaging.php"
   },
   {
     name: "Diploma in O.T. Technology",
     category: "Allied Health",
     description: "Train in operation theatre technology.",
-    image: "images/diploma-ot-technology.jpg",
+    image: "images/gallery/diploma-ot-technology.jpg",
     link: "diploma-ot-technology.php"
   },
   {
     name: "Diploma in Ophthalmic Technic",
     category: "Allied Health",
     description: "Training in eye-care technology.",
-    image: "images/diploma-in-ophthalmic-technic.jpg",
+    image: "images/gallery/diploma-in-ophthalmic-technic.jpg",
     link: "diploma-ophtholmic.php"
   }
 ];
