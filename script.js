@@ -1,124 +1,505 @@
-var C = [
-  ["B.Sc. Nursing", "Nursing", "Undergraduate degree programme in nursing.", "bsc.php", "#9fe3c6", "#0b2a29"],
-  ["M.Sc. Nursing", "Nursing", "Postgraduate programme in nursing.", "msc.php", "#0e4a47", "#eaf7f2"],
-  ["PB B.Sc. Nursing", "Nursing", "Post Basic B.Sc. Nursing.", "pbbsc.php", "#ffc93c", "#0b2a29"],
-  ["GNM Nursing", "Nursing", "General Nursing and Midwifery.", "gnm.php", "#ff5a4e", "#fff"],
-  ["Diploma in Pharmacy", "Pharmacy", "Start your career in pharmacy.", "diploma-in-pharmacy.php", "#f6a6c1", "#3a0b1f"],
-  ["B.Sc. Medical Imaging", "Allied health", "Medical Imaging Technology.", "bsc-medical-imaging.php", "#a9c7ff", "#0b1f4a"],
-  ["Diploma in O.T. Technology", "Allied health", "Operation Theatre Technology.", "diploma-ot-technology.php", "#c9f08a", "#1c2e05"],
-  ["Diploma in Ophthalmic Technic", "Allied health", "Eye-care technician training.", "diploma-ophtholmic.php", "#ffb27a", "#3a1a05"]];
-var list = document.getElementById('list'), panel = document.getElementById('panel');
-function pick(i) {
-  var c = C[i];
-  [].forEach.call(list.children, function (li, k) { li.firstChild.setAttribute('aria-selected', k === i) });
-  panel.style.background = c[4]; panel.style.color = c[5];
-  panel.innerHTML = '<svg viewBox="0 0 400 120" aria-hidden="true"><path d="M0 70 H120 l14-8 14 8 H210 l12 8 8-60 14 100 10-48 H400"/></svg><h3>' + c[0] + '</h3><p>' + c[2] + '</p><a class="btn" href="' + c[3] + '">View programme</a>'
-}
-C.forEach(function (c, i) { var li = document.createElement('li'), b = document.createElement('button'); b.setAttribute('role', 'tab'); b.innerHTML = c[0] + '<small>' + c[1] + '</small>'; b.onclick = function () { pick(i) }; li.appendChild(b); list.appendChild(li) });
-pick(0);
-function pad(n) { return n < 10 ? '0' + n : '' + n }
-function seq(p, a, b, pd, skip) { var o = []; for (var i = a; i <= b; i++) { if (skip && skip.indexOf(i) > -1) continue; o.push('images/gallery/' + p + (pd ? pad(i) : i) + '.jpg') } return o }
-var E = [
-  { n: 'International Nursing Day', i: seq('IND-', 1, 13, 1) },
-  { n: 'College Day', i: seq('photos-', 1, 10, 1) },
-  { n: 'Blood Donation Camp', i: seq('blood-', 1, 5, 1) },
-  { n: 'AIDS Day', i: seq('aids-', 1, 3, 1) },
-  { n: 'Lamp Lighting Ceremony', i: seq('lamp-', 1, 4, 1) },
-  { n: 'Sports Day', i: seq('sports-', 1, 5, 1) },
-  { n: 'International Yoga Day', i: seq('yoga-', 1, 13, 1) },
-  { n: 'Campus Life', i: seq('gallery-', 1, 4, 1).concat(seq('env', 1, 8)).concat(seq('', 1, 37, 0, [5])) }];
-var picker = document.getElementById('picker'), reel = document.getElementById('reel'), bar = document.getElementById('bar'),
-  cur = 0, moved = false, calm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-E.forEach(function (e, i) {
-  var b = document.createElement('button'); b.className = 'ev'; b.setAttribute('role', 'tab');
-  b.innerHTML = '<img loading="lazy" alt="" src="' + e.i[0] + '" onerror="this.remove()"><span>' + e.n + '</span><small>' + e.i.length + ' photos</small>';
-  b.onclick = function () { openEv(i, true) }; picker.appendChild(b)
-});
-function openEv(i, center) {
-  cur = i;
-  [].forEach.call(picker.children, function (b, k) { b.setAttribute('aria-selected', k === i) });
-  if (center) { var b = picker.children[i]; picker.scrollTo({ left: b.offsetLeft - (picker.clientWidth - b.offsetWidth) / 2, behavior: 'smooth' }) }
-  document.getElementById('evTitle').textContent = E[i].n;
-  document.getElementById('evCount').textContent = E[i].i.length + ' photos';
-  reel.innerHTML = '';
-  E[i].i.forEach(function (src, k) {
-    var s = document.createElement('button'); s.className = 'shot in'; s.style.animationDelay = (k * 60) + 'ms';
-    s.setAttribute('aria-label', E[i].n + ' photo ' + (k + 1));
-    s.innerHTML = '<img decoding="async" alt="' + E[i].n + ' at Subash Group of Institutions" src="' + src + '" onerror="this.remove()">';
-    s.onclick = function () { if (!moved) openLb(k) }; reel.appendChild(s)
+
+/* =========================================================
+   SUBASH GROUP OF INSTITUTIONS — MAIN SCRIPT
+   Courses, event gallery, statistics, navigation and hero
+   ========================================================= */
+
+
+/* =========================================================
+   1. COURSES — AUTOMATIC RIGHT-TO-LEFT CAROUSEL
+   ========================================================= */
+
+const courses = [
+  {
+    name: "B.Sc. Nursing",
+    category: "Nursing",
+    description: "Undergraduate degree programme in nursing.",
+    image: "images/bsc-nursing.jpg",
+    link: "bsc.php"
+  },
+  {
+    name: "M.Sc. Nursing",
+    category: "Nursing",
+    description: "Postgraduate programme in nursing.",
+    image: "images/msc-nursing.jpg",
+    link: "msc.php"
+  },
+  {
+    name: "PB B.Sc. Nursing",
+    category: "Nursing",
+    description: "Post Basic B.Sc. Nursing programme.",
+    image: "images/pb-bsc-nursing.jpg",
+    link: "pbbsc.php"
+  },
+  {
+    name: "GNM Nursing",
+    category: "Nursing",
+    description: "General Nursing and Midwifery.",
+    image: "images/gnm-nursing.jpg",
+    link: "gnm.php"
+  },
+  {
+    name: "Diploma in Pharmacy",
+    category: "Pharmacy",
+    description: "Build your foundation in pharmacy.",
+    image: "images/diploma-in-pharmacy.jpg",
+    link: "diploma-in-pharmacy.php"
+  },
+  {
+    name: "B.Sc. Medical Imaging",
+    category: "Allied Health",
+    description: "Learn medical imaging technology.",
+    image: "images/bsc-medical-imaging.jpg",
+    link: "bsc-medical-imaging.php"
+  },
+  {
+    name: "Diploma in O.T. Technology",
+    category: "Allied Health",
+    description: "Train in operation theatre technology.",
+    image: "images/diploma-ot-technology.jpg",
+    link: "diploma-ot-technology.php"
+  },
+  {
+    name: "Diploma in Ophthalmic Technic",
+    category: "Allied Health",
+    description: "Training in eye-care technology.",
+    image: "images/diploma-in-ophthalmic-technic.jpg",
+    link: "diploma-ophtholmic.php"
+  }
+];
+
+const coursesTrack = document.getElementById("coursesTrack");
+
+if (coursesTrack) {
+  function createCourseCard(course) {
+    const card = document.createElement("article");
+    card.className = "course-card";
+
+    const img = document.createElement("img");
+    img.src = course.image;
+    img.alt = course.name;
+    img.loading = "lazy";
+
+    const content = document.createElement("div");
+    content.className = "course-card-content";
+
+    const category = document.createElement("span");
+    category.className = "course-category";
+    category.textContent = course.category;
+
+    const heading = document.createElement("h3");
+    heading.textContent = course.name;
+
+    const description = document.createElement("p");
+    description.textContent = course.description;
+
+    const link = document.createElement("a");
+    link.className = "course-link";
+    link.href = course.link;
+    link.textContent = "View programme";
+
+    content.append(category, heading, description, link);
+    card.append(img, content);
+
+    return card;
+  }
+
+  // Prevent duplicate cards if the script is initialized again.
+  coursesTrack.replaceChildren();
+
+  // Original cards.
+  courses.forEach(function (course) {
+    coursesTrack.appendChild(createCourseCard(course));
   });
-  reel.scrollLeft = 0; frame()
+
+  // Duplicate cards for the continuous CSS animation.
+  courses.forEach(function (course) {
+    const card = createCourseCard(course);
+    card.setAttribute("aria-hidden", "true");
+
+    card.querySelectorAll("a").forEach(function (link) {
+      link.setAttribute("tabindex", "-1");
+    });
+
+    coursesTrack.appendChild(card);
+  });
 }
-/* scroll-linked motion: shots tilt/scale toward the centre, photos drift inside their shapes */
-var ticking = false;
-function frame() {
-  ticking = false;
-  var rr = reel.getBoundingClientRect(), mid = rr.left + rr.width / 2, max = reel.scrollWidth - reel.clientWidth, vis = Math.max(reel.clientWidth / reel.scrollWidth * 100, 10);
-  bar.style.width = vis + '%'; bar.style.marginLeft = ((max > 0 ? reel.scrollLeft / max : 0) * (100 - vis)) + '%';
-  if (calm) return;
-  [].forEach.call(reel.children, function (s) {
-    var r = s.getBoundingClientRect(), d = ((r.left + r.width / 2) - mid) / rr.width;
-    if (Math.abs(d) > 1.3) return;
-    s.style.setProperty('--s', (1 - Math.min(Math.abs(d), .8) * .2).toFixed(3));
-    s.style.setProperty('--r', (d * 6).toFixed(2) + 'deg');
-  })
+
+
+/* =========================================================
+   2. GALLERY — EVENT BUTTONS AND RESPONSIVE IMAGE GRID
+   ========================================================= */
+
+// Generate zero-padded filenames such as 01, 02, 03.
+function pad(n) {
+  return n < 10 ? "0" + n : "" + n;
 }
-function req() { if (!ticking) { ticking = true; requestAnimationFrame(frame) } }
-reel.addEventListener('scroll', req, { passive: true }); window.addEventListener('resize', req);
-function stepPx() { return Math.max(280, reel.clientWidth * .6) }
-document.getElementById('prev').onclick = function () { reel.scrollBy({ left: -stepPx(), behavior: 'smooth' }) };
-document.getElementById('next').onclick = function () { reel.scrollBy({ left: stepPx(), behavior: 'smooth' }) };
-/* drag + wheel */
-var down = false, sx = 0, sl = 0;
-reel.addEventListener('mousedown', function (e) { down = true; moved = false; sx = e.pageX; sl = reel.scrollLeft; reel.classList.add('drag') });
-window.addEventListener('mouseup', function () { down = false; reel.classList.remove('drag'); setTimeout(function () { moved = false }, 0) });
-window.addEventListener('mousemove', function (e) { if (!down) return; var dx = e.pageX - sx; if (Math.abs(dx) > 5) moved = true; reel.scrollLeft = sl - dx });
-reel.addEventListener('wheel', function (e) {
-  if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-    var s = reel.scrollLeft, end = reel.scrollWidth - reel.clientWidth - 1;
-    if (!((s <= 0 && e.deltaY < 0) || (s >= end && e.deltaY > 0))) { e.preventDefault(); reel.scrollLeft += e.deltaY * 1.2 }
+
+// Generate image paths for each event.
+function seq(prefix, start, end, padded, skip) {
+  const images = [];
+
+  for (let i = start; i <= end; i++) {
+    if (skip && skip.indexOf(i) !== -1) {
+      continue;
+    }
+
+    const number = padded ? pad(i) : i;
+
+    images.push(
+      "images/gallery/" + prefix + number + ".jpg"
+    );
   }
-}, { passive: false });
-/* lightbox */
-var lb = document.getElementById('lb'), lbi = document.getElementById('lbi'), lbc = document.getElementById('lbc'), ix = 0;
-function showLb() { var l = E[cur].i; lbi.src = l[ix]; lbi.alt = E[cur].n; lbc.textContent = E[cur].n + '  |  ' + (ix + 1) + ' / ' + l.length }
-function openLb(i) { ix = i; showLb(); lb.classList.add('on'); lb.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden' }
-function closeLb() { lb.classList.remove('on'); lb.setAttribute('aria-hidden', 'true'); document.body.style.overflow = '' }
-function go(d) { var n = E[cur].i.length; ix = (ix + d + n) % n; showLb() }
-document.getElementById('lbx').onclick = closeLb; document.getElementById('lbp').onclick = function () { go(-1) }; document.getElementById('lbq').onclick = function () { go(1) };
-lb.addEventListener('click', function (e) { if (e.target === lb) closeLb() });
-document.addEventListener('keydown', function (e) { if (!lb.classList.contains('on')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1) });
-var tx = 0; lb.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX }, { passive: true });
-lb.addEventListener('touchend', function (e) { var d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) go(d > 0 ? -1 : 1) });
-openEv(0, false);
-var done = 0; new IntersectionObserver(function (en, o) {
-  if (!en[0].isIntersecting || done) return; done = 1; o.disconnect();
-  document.querySelectorAll('[data-n]').forEach(function (el) { var t = +el.dataset.n, t0 = null; (function f(t1) { t0 = t0 || t1; var p = Math.min((t1 - t0) / 1400, 1); el.textContent = Math.round(t * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f) })(performance.now()) })
-}, { threshold: .4 }).observe(document.querySelector('.vitals'));
-/* menu: hamburger + arrow dropdowns */
-(function(){
-  var burger=document.getElementById('burger'),menu=document.getElementById('menu'),scrim=document.getElementById('scrim');
-  function setMenu(open){
-    menu.classList.toggle('open',open);burger.classList.toggle('on',open);scrim.classList.toggle('on',open);
-    burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');
-    document.body.style.overflow=open?'hidden':'';
+
+  return images;
+}
+
+// Existing event names and image collections are preserved.
+const galleryData = [
+  {
+    name: "International Nursing Day",
+    images: seq("IND-", 1, 13, true)
+  },
+  {
+    name: "College Day",
+    images: seq("photos-", 1, 10, true)
+  },
+  {
+    name: "Blood Donation Camp",
+    images: seq("blood-", 1, 5, true)
+  },
+  {
+    name: "AIDS Day",
+    images: seq("aids-", 1, 3, true)
+  },
+  {
+    name: "Lamp Lighting Ceremony",
+    images: seq("lamp-", 1, 4, true)
+  },
+  {
+    name: "Sports Day",
+    images: seq("sports-", 1, 5, true)
+  },
+  {
+    name: "International Yoga Day",
+    images: seq("yoga-", 1, 13, true)
+  },
+  {
+    name: "Campus Life",
+    images: seq("gallery-", 1, 4, true)
+      .concat(seq("env", 1, 8, false))
+      .concat(seq("", 1, 37, false, [5]))
   }
-  burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
-  scrim.addEventListener('click',function(){setMenu(false)});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
-  document.querySelectorAll('.arr').forEach(function(b){
-    b.addEventListener('click',function(){
-      var li=b.closest('.has-sub'),open=!li.classList.contains('open');
-      document.querySelectorAll('.has-sub.open').forEach(function(o){
-        if(o!==li){o.classList.remove('open');o.querySelector('.arr').setAttribute('aria-expanded','false')}
-      });
-      li.classList.toggle('open',open);b.setAttribute('aria-expanded',open);
+];
+
+const galleryEvents = document.getElementById("galleryEvents");
+const galleryGrid = document.getElementById("galleryGrid");
+const galleryTitle = document.getElementById("evTitle");
+const galleryCount = document.getElementById("evCount");
+
+if (
+  galleryEvents &&
+  galleryGrid &&
+  galleryTitle &&
+  galleryCount
+) {
+  // Create a photo element without HTML string injection.
+  function createGalleryImage(src, eventName, index) {
+    const img = document.createElement("img");
+
+    img.src = src;
+    img.alt = eventName + " - Photo " + (index + 1);
+    img.decoding = "async";
+    img.loading = index < 4 ? "eager" : "lazy";
+
+    // Hide missing images instead of showing broken-image icons.
+    img.addEventListener("error", function () {
+      img.remove();
+      updateGalleryCount();
+    }, { once: true });
+
+    return img;
+  }
+
+  // Update the displayed count to reflect images that loaded.
+  function updateGalleryCount() {
+    const visibleImages = galleryGrid.querySelectorAll("img").length;
+    const failedImages = galleryGrid.dataset.failed === "true";
+
+    // The displayed count normally shows the event's total.
+    // It is adjusted only when image files are missing.
+    if (failedImages) {
+      galleryCount.textContent = visibleImages + " photos";
+    }
+  }
+
+  function showGalleryEvent(index) {
+    const event = galleryData[index];
+
+    if (!event) return;
+
+    // Highlight the active event button.
+    Array.from(galleryEvents.children).forEach(
+      function (button, buttonIndex) {
+        const active = buttonIndex === index;
+
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      }
+    );
+
+    // Update heading and photo count.
+    galleryTitle.textContent = event.name;
+    galleryCount.textContent = event.images.length + " photos";
+
+    // Clear the previously selected event's images.
+    galleryGrid.replaceChildren();
+    galleryGrid.dataset.failed = "false";
+
+    event.images.forEach(function (src, imageIndex) {
+      const img = createGalleryImage(
+        src,
+        event.name,
+        imageIndex
+      );
+
+      img.addEventListener("error", function () {
+        galleryGrid.dataset.failed = "true";
+      }, { once: true });
+
+      galleryGrid.appendChild(img);
+    });
+  }
+
+  // Create one simple button per event.
+  galleryEvents.replaceChildren();
+
+  galleryData.forEach(function (event, index) {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "gallery-event-btn";
+    button.textContent = event.name;
+    button.setAttribute("aria-pressed", "false");
+
+    button.addEventListener("click", function () {
+      showGalleryEvent(index);
+    });
+
+    galleryEvents.appendChild(button);
+  });
+
+  // Show International Nursing Day by default.
+  showGalleryEvent(0);
+}
+
+
+/* =========================================================
+   3. STATISTICS — ANIMATED NUMBER COUNTERS
+   ========================================================= */
+
+(function initCounters() {
+  const vitals = document.querySelector(".vitals");
+
+  if (!vitals || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  let countersStarted = false;
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      if (!entries[0].isIntersecting || countersStarted) {
+        return;
+      }
+
+      countersStarted = true;
+      observer.disconnect();
+
+      document.querySelectorAll("[data-n]").forEach(
+        function (element) {
+          const target = Number(element.dataset.n);
+
+          if (!Number.isFinite(target)) return;
+
+          const duration = 1400;
+          let startTime = null;
+
+          function animateCounter(timestamp) {
+            if (startTime === null) {
+              startTime = timestamp;
+            }
+
+            const progress = Math.min(
+              (timestamp - startTime) / duration,
+              1
+            );
+
+            const eased = 1 - Math.pow(1 - progress, 3);
+
+            element.textContent = Math.round(
+              target * eased
+            );
+
+            if (progress < 1) {
+              requestAnimationFrame(animateCounter);
+            }
+          }
+
+          requestAnimationFrame(animateCounter);
+        }
+      );
+    },
+    { threshold: 0.4 }
+  );
+
+  observer.observe(vitals);
+})();
+
+
+/* =========================================================
+   4. MOBILE NAVIGATION — HAMBURGER AND DROPDOWNS
+   ========================================================= */
+
+(function initNavigation() {
+  const burger = document.getElementById("burger");
+  const menu = document.getElementById("menu");
+  const scrim = document.getElementById("scrim");
+
+  // Do nothing on pages without this navigation.
+  if (!burger || !menu || !scrim) {
+    return;
+  }
+
+  function setMenu(open) {
+    menu.classList.toggle("open", open);
+    burger.classList.toggle("on", open);
+    scrim.classList.toggle("on", open);
+
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute(
+      "aria-label",
+      open ? "Close menu" : "Open menu"
+    );
+
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+
+  burger.addEventListener("click", function () {
+    setMenu(!menu.classList.contains("open"));
+  });
+
+  scrim.addEventListener("click", function () {
+    setMenu(false);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      setMenu(false);
+    }
+  });
+
+  // Expand and collapse navigation dropdowns.
+  document.querySelectorAll(".arr").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const item = button.closest(".has-sub");
+
+      if (!item) return;
+
+      const shouldOpen = !item.classList.contains("open");
+
+      document.querySelectorAll(".has-sub.open").forEach(
+        function (otherItem) {
+          if (otherItem !== item) {
+            otherItem.classList.remove("open");
+
+            const otherButton =
+              otherItem.querySelector(".arr");
+
+            if (otherButton) {
+              otherButton.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+            }
+          }
+        }
+      );
+
+      item.classList.toggle("open", shouldOpen);
+
+      button.setAttribute(
+        "aria-expanded",
+        String(shouldOpen)
+      );
     });
   });
-  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
-  window.addEventListener('resize',function(){if(window.innerWidth>1200)setMenu(false)});
-  document.addEventListener('click',function(e){
-    if(window.innerWidth>1200&&!e.target.closest('.has-sub'))
-      document.querySelectorAll('.has-sub.open').forEach(function(o){o.classList.remove('open')});
+
+  // Close the mobile menu after selecting a link.
+  menu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      setMenu(false);
+    });
   });
+
+  // Close the menu when returning to desktop width.
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 1200) {
+      setMenu(false);
+    }
+  });
+
+  // Close open desktop dropdowns when clicking outside.
+  document.addEventListener("click", function (event) {
+    if (
+      window.innerWidth > 1200 &&
+      !event.target.closest(".has-sub")
+    ) {
+      document.querySelectorAll(".has-sub.open").forEach(
+        function (item) {
+          item.classList.remove("open");
+
+          const button = item.querySelector(".arr");
+
+          if (button) {
+            button.setAttribute("aria-expanded", "false");
+          }
+        }
+      );
+    }
+  });
+})();
+
+
+/* =========================================================
+   5. HERO BANNER — AUTOMATIC SLIDE EVERY 4 SECONDS
+   ========================================================= */
+
+(function initHeroSlider() {
+  const slides = document.querySelectorAll(".hero-slide");
+
+  if (slides.length <= 1) return;
+
+  let currentSlide = 0;
+
+  // Ensure the first slide is visible initially.
+  slides.forEach(function (slide, index) {
+    slide.classList.toggle("active", index === 0);
+  });
+
+  // Respect reduced-motion preferences.
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    return;
+  }
+
+  window.setInterval(function () {
+    slides[currentSlide].classList.remove("active");
+
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    slides[currentSlide].classList.add("active");
+  }, 4000);
 })();

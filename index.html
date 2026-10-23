@@ -78,20 +78,58 @@
     </nav>
 
     <header class="hero" id="top">
-        <div class="seal">Admissions<br>open<br>2026–27</div>
-        <div class="w">
-            <h1>Your pulse for caring<span>starts here.</span></h1>
-            <p>Nursing, pharmacy and allied health programmes in Bidadi, Bangalore, with an attached teaching hospital
-                and a residential campus.</p>
-            <div class="acts"><a class="btn b-sun" href="#apply">Apply online</a><a class="btn"
-                    href="images/pdf/brochure.pdf" target="_blank" rel="noopener">Download brochure</a></div>
-        </div>
-        <svg class="ecg" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
-            <path
-                d="M0 110 H180 l20-8 20 8 H330 l18 10 12-90 22 150 16-70 H470 l20-14 24 14 H700 l18 10 12-90 22 150 16-70 H830 l20-14 24 14 H1050 l18 10 12-90 22 150 16-70 H1200" />
-        </svg>
-    </header>
 
+        <!-- Automatic sliding banner images -->
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('images/gallery/nursing1.jpg');">
+            </div>
+
+            <div class="hero-slide" style="background-image: url('images/gallery/nursing2.jpg');">
+            </div>
+
+            <div class="hero-slide" style="background-image: url('images/gallery/nursing3.jpg');">
+            </div>
+        </div>
+
+        <!-- Dark overlay for readable text -->
+        <div class="hero-overlay"></div>
+
+        <!-- Admissions badge -->
+        <div class="seal">
+            Admissions<br>
+            open<br>
+            2026–27
+        </div>
+
+        <!-- Hero content -->
+        <div class="w hero-content">
+            <h1>Your pulse for caring<span>starts here.</span></h1>
+
+            <p>
+                Nursing, pharmacy and allied health programmes in Bidadi,
+                Bangalore, with an attached teaching hospital and a
+                residential campus.
+            </p>
+
+            <div class="acts">
+                <a class="btn b-sun" href="#apply">Apply online</a>
+
+                <a class="btn" href="images/pdf/brochure.pdf" target="_blank" rel="noopener">
+                    Download brochure
+                </a>
+            </div>
+        </div>
+
+        <!-- ECG decoration -->
+        <svg class="ecg" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 110 H180 l20-8 20 8 H330 l18 10 12-90
+            22 150 16-70 H470 l20-14 24 14 H700
+            l18 10 12-90 22 150 16-70 H830
+            l20-14 24 14 H1050 l18 10 12-90
+            22 150 16-70 H1200" />
+        </svg>
+
+    </header>
     <div class="vitals">
         <div><b data-n="2001" data-plain>0</b><span>Sri Srinivasa Education Trust constituted</span></div>
         <div><b data-n="8">0</b><span>Programmes</span></div>
@@ -121,39 +159,71 @@
         </div>
     </section>
 
-    <section id="courses" style="background:var(--card)">
+
+    <section id="courses" class="courses-section">
         <div class="w">
             <h2>Eight ways into healthcare.</h2>
-            <p class="lead">Pick a programme from the chart on the left to see what it covers.</p>
-            <div class="board">
-                <ul class="list" id="list" role="tablist" aria-label="Programmes"></ul>
-                <div class="panel" id="panel" role="tabpanel"></div>
+            <p class="lead">
+                Explore our nursing, pharmacy and allied health programmes.
+            </p>
+
+            <div class="courses-slider">
+                <div class="courses-track" id="coursesTrack">
+                    <!-- Course cards will be generated using JavaScript -->
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="institutions">
+
+
+    <section id="institutions" class="institutions-section">
         <div class="w">
             <h2>Four institutions, one campus family.</h2>
-            <p class="lead">Each one trains a different part of the care team.</p>
+            <p class="lead">
+                Each one trains a different part of the care team.
+            </p>
+
             <div class="inst">
-                <a href="#"><span class="ic">💊</span>
-                    <h3>Subash College of Pharmacy</h3>
+
+                <a href="#" class="inst-card">
+                    <img src="images/college1.jpg" alt="Subash College of Pharmacy">
+                    <div class="inst-content">
+                        <h3>Subash College of Pharmacy</h3>
+                        <span>Explore institution →</span>
+                    </div>
                 </a>
-                <a href="school.php"><span class="ic">🏥</span>
-                    <h3>Subash School of Nursing</h3>
+
+                <a href="school.php" class="inst-card">
+                    <img src="images/college2.jpg" alt="Subash School of Nursing">
+                    <div class="inst-content">
+                        <h3>Subash School of Nursing</h3>
+                        <span>Explore institution →</span>
+                    </div>
                 </a>
-                <a href="college.php"><span class="ic">🎓</span>
-                    <h3>Subash College of Nursing</h3>
+
+                <a href="college.php" class="inst-card">
+                    <img src="images/college3.jpg" alt="Subash College of Nursing">
+                    <div class="inst-content">
+                        <h3>Subash College of Nursing</h3>
+                        <span>Explore institution →</span>
+                    </div>
                 </a>
-                <a href="smc.php"><span class="ic">➕</span>
-                    <h3>Subash Hospital</h3>
+
+                <a href="smc.php" class="inst-card">
+                    <img src="images/college4.jpg" alt="Subash Hospital">
+                    <div class="inst-content">
+                        <h3>Subash Hospital</h3>
+                        <span>Explore institution →</span>
+                    </div>
                 </a>
+
             </div>
         </div>
     </section>
 
-    <section id="apply" class="dark">
+
+    <!-- <section id="apply" class="dark">
         <div class="w">
             <h2>Three steps to your seat.</h2>
             <p class="lead">Limited seats are available for 2026–27.</p>
@@ -175,29 +245,31 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
 
     <section id="gallery" class="sec-gal">
         <div class="w">
             <h2>Moments worth keeping.</h2>
-            <p class="lead">Pick an event, then scroll, drag or use the arrows to move through its photos. Tap a photo
-                to open it full size.</p>
-        </div>
-        <div class="picker" id="picker" role="tablist" aria-label="Events"></div>
-        <div class="w">
-            <div class="stage">
-                <div class="st-top">
-                    <div>
-                        <h3 id="evTitle"></h3><span id="evCount"></span>
-                    </div>
-                    <div class="arrows"><button id="prev" aria-label="Scroll left">&#8592;</button><button id="next"
-                            aria-label="Scroll right">&#8594;</button></div>
-                </div>
-                <div class="reel" id="reel"></div>
-                <div class="prog"><i id="bar"></i></div>
+            <p class="lead">
+                Explore the events and memorable moments at our campus.
+            </p>
+
+            <!-- Event buttons -->
+            <div class="gallery-events" id="galleryEvents" role="group" aria-label="Choose an event">
             </div>
+
+            <!-- Selected event heading -->
+            <div class="gallery-heading">
+                <h3 id="evTitle">International Nursing Day</h3>
+                <span id="evCount"></span>
+            </div>
+
+            <!-- Photo grid -->
+            <div class="gallery-grid" id="galleryGrid"></div>
         </div>
     </section>
+
     <div class="lb" id="lb" aria-hidden="true"><button class="lbx" id="lbx" aria-label="Close">&times;</button><button
             class="lbn lbp" id="lbp" aria-label="Previous">&#8249;</button><img id="lbi" alt=""><button class="lbn lbq"
             id="lbq" aria-label="Next">&#8250;</button>
@@ -288,7 +360,7 @@
                     <a href="#contact">Contact</a> -->
                 </div>
             </div>
-            <div class="mega" aria-hidden="true">SUBASH GROUP</div>
+            <!-- <div class="mega" aria-hidden="true">SUBASH GROUP</div> -->
             <div class="fb"><span>© 2026 Subash Group of Institutions. All rights reserved.</span><span>Designed by
                     EMSWEBTECH</span></div>
         </div>
