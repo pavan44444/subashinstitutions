@@ -714,7 +714,7 @@ h2 {
     color: #fff;
     font-size: 21px;
     cursor: pointer;
-    transition: .25s
+    transition: .25s;
 }
 
 .arrows button:hover {
@@ -2615,5 +2615,21 @@ footer p a:hover {
 @media (prefers-reduced-motion: reduce) {
     .hero-slide {
         transition: none;
+    }
+}
+
+@media(min-width:1201px) {
+    .menu .has-sub.shut>.sub {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px)
+    }
+
+    .menu .has-sub:hover>.row .arr::before {
+        transform: rotate(-135deg) translate(-1px, -1px)
+    }
+
+    .menu .has-sub.shut>.row .arr::before {
+        transform: rotate(45deg) translate(-1px, -1px)
     }
 }

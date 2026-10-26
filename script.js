@@ -401,37 +401,53 @@ if (
 
   // Expand and collapse navigation dropdowns.
   document.querySelectorAll(".arr").forEach(function (button) {
+    const item = button.closest(".has-sub");
+
+    if (!item) return;
+
+    const submenu = item.querySelector(".sub");
+
     button.addEventListener("click", function () {
-      const item = button.closest(".has-sub");
+      const desktop = window.innerWidth > 1200;
+      let shouldOpen;
 
-      if (!item) return;
+      if (desktop) {
+        // If the dropdown is showing (hover or click), this click closes it.
+        shouldOpen = getComputedStyle(submenu).visibility !== "visible";
+      } else {
+        shouldOpen = !item.classList.contains("open");
+      }
 
-      const shouldOpen = !item.classList.contains("open");
-
+      // Close any other open dropdown.
       document.querySelectorAll(".has-sub.open").forEach(
         function (otherItem) {
           if (otherItem !== item) {
             otherItem.classList.remove("open");
 
-            const otherButton =
-              otherItem.querySelector(".arr");
+            const otherButton = otherItem.querySelector(".arr");
 
             if (otherButton) {
-              otherButton.setAttribute(
-                "aria-expanded",
-                "false"
-              );
+              otherButton.setAttribute("aria-expanded", "false");
             }
           }
         }
       );
 
       item.classList.toggle("open", shouldOpen);
+      item.classList.toggle("shut", desktop && !shouldOpen);
 
-      button.setAttribute(
-        "aria-expanded",
-        String(shouldOpen)
-      );
+      button.setAttribute("aria-expanded", String(shouldOpen));
+    });
+
+    // When the mouse leaves, reset so hover works normally again.
+    item.addEventListener("mouseleave", function () {
+      if (item.classList.contains("shut")) {
+        item.classList.remove("shut");
+
+        if (item.contains(document.activeElement)) {
+          document.activeElement.blur();
+        }
+      }
     });
   });
 
