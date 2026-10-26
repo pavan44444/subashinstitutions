@@ -113,16 +113,16 @@ if (coursesTrack) {
   });
 
   // Duplicate cards for the continuous CSS animation.
-  courses.forEach(function (course) {
-    const card = createCourseCard(course);
-    card.setAttribute("aria-hidden", "true");
+  // courses.forEach(function (course) {
+  //   const card = createCourseCard(course);
+  //   card.setAttribute("aria-hidden", "true");
 
-    card.querySelectorAll("a").forEach(function (link) {
-      link.setAttribute("tabindex", "-1");
-    });
+  //   card.querySelectorAll("a").forEach(function (link) {
+  //     link.setAttribute("tabindex", "-1");
+  //   });
 
-    coursesTrack.appendChild(card);
-  });
+  //   coursesTrack.appendChild(card);
+  // });
 }
 
 
@@ -131,168 +131,216 @@ if (coursesTrack) {
    ========================================================= */
 
 // Generate zero-padded filenames such as 01, 02, 03.
-function pad(n) {
-  return n < 10 ? "0" + n : "" + n;
-}
+// function pad(n) {
+//   return n < 10 ? "0" + n : "" + n;
+// }
 
-// Generate image paths for each event.
-function seq(prefix, start, end, padded, skip) {
-  const images = [];
+// // Generate image paths for each event.
+// function seq(prefix, start, end, padded, skip) {
+//   const images = [];
 
-  for (let i = start; i <= end; i++) {
-    if (skip && skip.indexOf(i) !== -1) {
-      continue;
-    }
+//   for (let i = start; i <= end; i++) {
+//     if (skip && skip.indexOf(i) !== -1) {
+//       continue;
+//     }
 
-    const number = padded ? pad(i) : i;
+//     const number = padded ? pad(i) : i;
 
-    images.push(
-      "images/gallery/" + prefix + number + ".jpg"
-    );
-  }
+//     images.push(
+//       "images/gallery/" + prefix + number + ".jpg"
+//     );
+//   }
 
-  return images;
-}
+//   return images;
+// }
 
-// Existing event names and image collections are preserved.
-const galleryData = [
-  {
-    name: "International Nursing Day",
-    images: seq("IND-", 1, 13, true)
-  },
-  {
-    name: "College Day",
-    images: seq("photos-", 1, 10, true)
-  },
-  {
-    name: "Blood Donation Camp",
-    images: seq("blood-", 1, 5, true)
-  },
-  {
-    name: "AIDS Day",
-    images: seq("aids-", 1, 3, true)
-  },
-  {
-    name: "Lamp Lighting Ceremony",
-    images: seq("lamp-", 1, 4, true)
-  },
-  {
-    name: "Sports Day",
-    images: seq("sports-", 1, 5, true)
-  },
-  {
-    name: "International Yoga Day",
-    images: seq("yoga-", 1, 13, true)
-  },
-  {
-    name: "Campus Life",
-    images: seq("gallery-", 1, 4, true)
-      .concat(seq("env", 1, 8, false))
-      .concat(seq("", 1, 37, false, [5]))
-  }
-];
+// // Existing event names and image collections are preserved.
+// const galleryData = [
+//   {
+//     name: "International Nursing Day",
+//     images: seq("IND-", 1, 13, true)
+//   },
+//   {
+//     name: "College Day",
+//     images: seq("photos-", 1, 10, true)
+//   },
+//   {
+//     name: "Blood Donation Camp",
+//     images: seq("blood-", 1, 5, true)
+//   },
+//   {
+//     name: "AIDS Day",
+//     images: seq("aids-", 1, 3, true)
+//   },
+//   {
+//     name: "Lamp Lighting Ceremony",
+//     images: seq("lamp-", 1, 4, true)
+//   },
+//   {
+//     name: "Sports Day",
+//     images: seq("sports-", 1, 5, true)
+//   },
+//   {
+//     name: "International Yoga Day",
+//     images: seq("yoga-", 1, 13, true)
+//   },
+//   {
+//     name: "Campus Life",
+//     images: seq("gallery-", 1, 4, true)
+//       .concat(seq("env", 1, 8, false))
+//       .concat(seq("", 1, 37, false, [5]))
+//   }
+// ];
 
-const galleryEvents = document.getElementById("galleryEvents");
-const galleryGrid = document.getElementById("galleryGrid");
-const galleryTitle = document.getElementById("evTitle");
-const galleryCount = document.getElementById("evCount");
+// const galleryEvents = document.getElementById("galleryEvents");
+// const galleryGrid = document.getElementById("galleryGrid");
+// const galleryTitle = document.getElementById("evTitle");
+// const galleryCount = document.getElementById("evCount");
 
-if (
-  galleryEvents &&
-  galleryGrid &&
-  galleryTitle &&
-  galleryCount
-) {
-  // Create a photo element without HTML string injection.
-  function createGalleryImage(src, eventName, index) {
-    const img = document.createElement("img");
+// if (
+//   galleryEvents &&
+//   galleryGrid &&
+//   galleryTitle &&
+//   galleryCount
+// ) {
+//   // Create a photo element without HTML string injection.
+//   function createGalleryImage(src, eventName, index) {
+//     const img = document.createElement("img");
 
-    img.src = src;
-    img.alt = eventName + " - Photo " + (index + 1);
-    img.decoding = "async";
-    img.loading = index < 4 ? "eager" : "lazy";
+//     img.src = src;
+//     img.alt = eventName + " - Photo " + (index + 1);
+//     img.decoding = "async";
+//     img.loading = index < 4 ? "eager" : "lazy";
 
-    // Hide missing images instead of showing broken-image icons.
-    img.addEventListener("error", function () {
-      img.remove();
-      updateGalleryCount();
-    }, { once: true });
+//     // Hide missing images instead of showing broken-image icons.
+//     img.addEventListener("error", function () {
+//       img.remove();
+//       updateGalleryCount();
+//     }, { once: true });
 
-    return img;
-  }
+//     return img;
+//   }
 
-  // Update the displayed count to reflect images that loaded.
-  function updateGalleryCount() {
-    const visibleImages = galleryGrid.querySelectorAll("img").length;
-    const failedImages = galleryGrid.dataset.failed === "true";
+//   // Update the displayed count to reflect images that loaded.
+//   function updateGalleryCount() {
+//     const visibleImages = galleryGrid.querySelectorAll("img").length;
+//     const failedImages = galleryGrid.dataset.failed === "true";
 
-    // The displayed count normally shows the event's total.
-    // It is adjusted only when image files are missing.
-    if (failedImages) {
-      galleryCount.textContent = visibleImages + " photos";
-    }
-  }
+//     // The displayed count normally shows the event's total.
+//     // It is adjusted only when image files are missing.
+//     if (failedImages) {
+//       galleryCount.textContent = visibleImages + " photos";
+//     }
+//   }
 
-  function showGalleryEvent(index) {
-    const event = galleryData[index];
+//   function showGalleryEvent(index) {
+//     const event = galleryData[index];
 
-    if (!event) return;
+//     if (!event) return;
 
-    // Highlight the active event button.
-    Array.from(galleryEvents.children).forEach(
-      function (button, buttonIndex) {
-        const active = buttonIndex === index;
+//     // Highlight the active event button.
+//     Array.from(galleryEvents.children).forEach(
+//       function (button, buttonIndex) {
+//         const active = buttonIndex === index;
 
-        button.classList.toggle("active", active);
-        button.setAttribute("aria-pressed", String(active));
-      }
-    );
+//         button.classList.toggle("active", active);
+//         button.setAttribute("aria-pressed", String(active));
+//       }
+//     );
 
-    // Update heading and photo count.
-    galleryTitle.textContent = event.name;
-    galleryCount.textContent = event.images.length + " photos";
+//     // Update heading and photo count.
+//     galleryTitle.textContent = event.name;
+//     galleryCount.textContent = event.images.length + " photos";
 
-    // Clear the previously selected event's images.
-    galleryGrid.replaceChildren();
-    galleryGrid.dataset.failed = "false";
+//     // Clear the previously selected event's images.
+//     galleryGrid.replaceChildren();
+//     galleryGrid.dataset.failed = "false";
 
-    event.images.forEach(function (src, imageIndex) {
-      const img = createGalleryImage(
-        src,
-        event.name,
-        imageIndex
-      );
+//     event.images.forEach(function (src, imageIndex) {
+//       const img = createGalleryImage(
+//         src,
+//         event.name,
+//         imageIndex
+//       );
 
+//       img.addEventListener("error", function () {
+//         galleryGrid.dataset.failed = "true";
+//       }, { once: true });
+
+//       galleryGrid.appendChild(img);
+//     });
+//   }
+
+//   // Create one simple button per event.
+//   galleryEvents.replaceChildren();
+
+//   galleryData.forEach(function (event, index) {
+//     const button = document.createElement("button");
+
+//     button.type = "button";
+//     button.className = "gallery-event-btn";
+//     button.textContent = event.name;
+//     button.setAttribute("aria-pressed", "false");
+
+//     button.addEventListener("click", function () {
+//       showGalleryEvent(index);
+//     });
+
+//     galleryEvents.appendChild(button);
+//   });
+
+//   // Show International Nursing Day by default.
+//   showGalleryEvent(0);
+// }
+/* =========================================================
+   2. GALLERY — AUTOMATIC CAROUSEL (20 PHOTOS)
+   ========================================================= */
+
+const galleryPhotos = [
+  "IND-01", "IND-02", "IND-03",
+  "photos-01", "photos-02", "photos-03",
+  "blood-01", "blood-02",
+  "aids-01", "aids-02",
+  "lamp-01", "lamp-02",
+  "sports-01", "sports-02",
+  "yoga-01", "yoga-02", "yoga-03",
+  "gallery-01", "gallery-02",
+  "env1"
+].map(function (name) {
+  return "images/gallery/" + name + ".jpg";
+});
+
+const galleryTrack = document.getElementById("galleryTrack");
+
+if (galleryTrack) {
+  galleryTrack.replaceChildren();
+
+  // Two identical sets: the animation moves by exactly one set, then restarts.
+  [false, true].forEach(function (isCopy) {
+    galleryPhotos.forEach(function (src, index) {
+      const item = document.createElement("div");
+      item.className = "gallery-item";
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = isCopy
+        ? ""
+        : "Subash Group of Institutions campus photo " + (index + 1);
+      img.decoding = "async";
+      img.draggable = false;
+
+      // Remove a missing photo instead of showing a broken icon.
       img.addEventListener("error", function () {
-        galleryGrid.dataset.failed = "true";
+        item.remove();
       }, { once: true });
 
-      galleryGrid.appendChild(img);
+      if (isCopy) item.setAttribute("aria-hidden", "true");
+
+      item.appendChild(img);
+      galleryTrack.appendChild(item);
     });
-  }
-
-  // Create one simple button per event.
-  galleryEvents.replaceChildren();
-
-  galleryData.forEach(function (event, index) {
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = "gallery-event-btn";
-    button.textContent = event.name;
-    button.setAttribute("aria-pressed", "false");
-
-    button.addEventListener("click", function () {
-      showGalleryEvent(index);
-    });
-
-    galleryEvents.appendChild(button);
   });
-
-  // Show International Nursing Day by default.
-  showGalleryEvent(0);
 }
-
 
 /* =========================================================
    3. STATISTICS — ANIMATED NUMBER COUNTERS
@@ -518,4 +566,70 @@ if (
 
     slides[currentSlide].classList.add("active");
   }, 4000);
+})();
+/* =========================================================
+   TESTIMONIALS carousel + FAQ accordion
+   ========================================================= */
+(function initTestimonials() {
+  const track = document.getElementById("tmTrack");
+  const dotsBox = document.getElementById("tmDots");
+  if (!track || !dotsBox) return;
+
+  const cards = Array.from(track.children);
+  let current = 0, timer = null;
+
+  cards.forEach(function (card, i) {
+    const dot = document.createElement("i");
+    dot.addEventListener("click", function () { goTo(i); restart(); });
+    dotsBox.appendChild(dot);
+  });
+
+  function setDots(i) {
+    Array.from(dotsBox.children).forEach(function (d, k) { d.classList.toggle("on", k === i); });
+  }
+
+  function goTo(i) {
+    current = (i + cards.length) % cards.length;
+    const card = cards[current];
+    track.scrollTo({ left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2, behavior: "smooth" });
+    setDots(current);
+  }
+
+  // Keep the dots in step when the user swipes or drags.
+  track.addEventListener("scroll", function () {
+    const mid = track.scrollLeft + track.clientWidth / 2;
+    let best = 0, bestDist = Infinity;
+    cards.forEach(function (c, i) {
+      const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    current = best;
+    setDots(best);
+  }, { passive: true });
+
+  function start() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    timer = setInterval(function () { goTo(current + 1); }, 5500);
+  }
+  function stop() { clearInterval(timer); }
+  function restart() { stop(); start(); }
+
+  track.addEventListener("mouseenter", stop);
+  track.addEventListener("mouseleave", start);
+  track.addEventListener("touchstart", stop, { passive: true });
+  track.addEventListener("touchend", start, { passive: true });
+
+  setDots(0);
+  start();
+})();
+
+(function initFaq() {
+  const items = document.querySelectorAll(".faq-item");
+  items.forEach(function (item) {
+    item.addEventListener("toggle", function () {
+      if (item.open) {
+        items.forEach(function (other) { if (other !== item) other.open = false; });
+      }
+    });
+  });
 })();
