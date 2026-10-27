@@ -86,11 +86,13 @@ a {
     transform: rotate(-3deg) scale(1.05)
 }
 
-.b-coral {
+/* .b-coral {
     background: var(--coral);
     border-color: var(--coral);
-    color: #fff
-}
+    color: #fff;
+    width: 100px;
+    height: 100px;
+} */
 
 .b-sun {
     background: var(--sun);
@@ -2542,7 +2544,7 @@ footer p a:hover {
 
     /* Replace desktop images with mobile images */
     .hero-slide:nth-child(1) {
-        background-image: url("images/gallery/nursing1-mobile.jpg") !important;
+        background-image: url("images/gallery/nursing3-mobile.jpg") !important;
     }
 
     .hero-slide:nth-child(2) {
@@ -2550,7 +2552,7 @@ footer p a:hover {
     }
 
     .hero-slide:nth-child(3) {
-        background-image: url("images/gallery/nursing3-mobile.jpg") !important;
+        background-image: url("images/gallery/nursing1-mobile.jpg") !important;
     }
 
     /* Portrait image settings */
@@ -3539,4 +3541,188 @@ footer::before {
 
 .f-about p a:hover {
     color: #ffd23f
+}
+
+/* ===== FACILITIES ===== */
+.sec-fac {
+    background: var(--card)
+}
+
+.fac-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px
+}
+
+.fac-card {
+    --fc: #ff5a4e;
+    background: var(--bg);
+    border: 2px solid var(--line);
+    border-bottom: 6px solid var(--fc);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .3s, box-shadow .3s
+}
+
+/* .fac-card:nth-child(4n+2) {
+    --fc: #ffc93c
+}
+
+.fac-card:nth-child(4n+3) {
+    --fc: #2fd18b
+}
+
+.fac-card:nth-child(4n+4) {
+    --fc: #8b5cf6
+} */
+
+.fac-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 36px rgba(0, 0, 0, .16)
+}
+
+/* every photo the same size */
+.fac-img {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0e4a47, var(--fc))
+}
+
+.fac-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s
+}
+
+.fac-card:hover .fac-img img {
+    transform: scale(1.08)
+}
+
+.fac-no {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--fc);
+    color: #0b2a29;
+    font: 800 17px/1 'Bricolage Grotesque', sans-serif;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .25)
+}
+
+.fac-card:nth-child(4n+1) .fac-no,
+.fac-card:nth-child(4n+4) .fac-no {
+    color: #fff
+}
+
+.fac-body {
+    padding: 18px 18px 22px
+}
+
+.fac-body h3 {
+    font: 800 21px/1.15 'Bricolage Grotesque', sans-serif;
+    margin-bottom: 8px
+}
+
+.fac-body p {
+    color: var(--mute);
+    font-size: 14.5px;
+    line-height: 1.55
+}
+
+@media(max-width:1100px) {
+    .fac-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media(max-width:560px) {
+    .fac-grid {
+        grid-template-columns: 1fr
+    }
+}
+
+/* hero photos: clear and bright */
+.hero-slide {
+    filter: none !important
+}
+
+.hero-slide.active {
+    opacity: 1 !important
+}
+
+/* remove the full-image tint, if your hero has one */
+.hero::before,
+.hero::after,
+.hero-slider::before,
+.hero-slider::after,
+.hero-slide::before,
+.hero-slide::after {
+    background: none !important;
+    opacity: 0 !important
+}
+
+/* keep only a light shade behind the text, so the photo stays bright on the right */
+.hero .w {
+    position: relative;
+    z-index: 2
+}
+
+.hero-slider::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 1 !important;
+    background: linear-gradient(90deg, rgba(7, 36, 35, .55) 0%, rgba(7, 36, 35, .25) 35%, transparent 60%) !important;
+}
+
+.hero h1,
+.hero p {
+    text-shadow: 0 2px 14px rgba(0, 0, 0, .45)
+}
+
+/* hero photo: original, untouched */
+.hero::before,
+.hero::after,
+.hero-slider::before,
+.hero-slider::after,
+.hero-slide::before,
+.hero-slide::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+}
+
+.hero-slider,
+.hero-slide {
+    filter: none !important;
+    backdrop-filter: none !important;
+    mix-blend-mode: normal !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+}
+
+.hero-slider {
+    opacity: 1 !important
+}
+
+.hero-slide.active {
+    opacity: 1 !important
+}
+
+/* no shadow on the heading and paragraph either */
+.hero h1,
+.hero p {
+    text-shadow: none !important
 }
