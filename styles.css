@@ -3464,3 +3464,79 @@ footer p a:hover {
         font-size: 14px
     }
 }
+
+.social {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px
+}
+
+.social a {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    transition: transform .25s
+}
+
+.social a:hover {
+    transform: translateY(-6px) rotate(-6deg)
+}
+
+.social svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor
+}
+
+.social .s-ig svg {
+    fill: none
+}
+
+.s-fb {
+    background: #1877f2
+}
+
+.s-x {
+    background: #000;
+    border: 1px solid #333
+}
+
+.s-in {
+    background: #0a66c2
+}
+
+.s-yt {
+    background: #f00
+}
+
+.s-ig {
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)
+}
+
+/* footer: same green as the header */
+footer {
+    background: #0e4a47;
+    color: #dff3ec
+}
+
+footer::before {
+    background: radial-gradient(#ff5a4e, transparent 70%);
+    opacity: .22
+}
+
+.f-col>a {
+    color: #dff3ec
+}
+
+.f-about p,
+.f-about p a {
+    color: #dff3ec
+}
+
+.f-about p a:hover {
+    color: #ffd23f
+}
