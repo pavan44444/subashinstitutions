@@ -3034,7 +3034,7 @@ footer p a:hover {
 }
 
 .tm-card blockquote {
-    font-size: 19px;
+    font-size: 99px;
     line-height: 1.6;
     color: #eaf7f2;
     position: relative;
@@ -3325,7 +3325,7 @@ footer p a:hover {
 /* text */
 #testimonials .tm-card blockquote {
     color: #fff;
-    font-size: 19px;
+    font-size: 16px;
     line-height: 1.65;
     position: relative;
     padding-right: 34px;
@@ -3668,7 +3668,7 @@ footer::before {
 .hero-slide::before,
 .hero-slide::after {
     background: none !important;
-    opacity: 0 !important
+    /* opacity: 0 !important */
 }
 
 /* keep only a light shade behind the text, so the photo stays bright on the right */
@@ -3683,7 +3683,7 @@ footer::before {
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 1 !important;
+    /* opacity: 1 !important; */
     background: linear-gradient(90deg, rgba(7, 36, 35, .55) 0%, rgba(7, 36, 35, .25) 35%, transparent 60%) !important;
 }
 
@@ -3713,16 +3713,37 @@ footer::before {
     mask-image: none !important;
 }
 
-.hero-slider {
+/* .hero-slider {
     opacity: 1 !important
 }
 
 .hero-slide.active {
     opacity: 1 !important
-}
+} */
 
 /* no shadow on the heading and paragraph either */
 .hero h1,
 .hero p {
     text-shadow: none !important
+}
+
+/* more space between the LETTERS of the main menu links */
+@media(min-width:1201px) {
+
+    .menu .row>a,
+    .menu>ul>li>a {
+        letter-spacing: .1em !important;
+        word-spacing: normal !important;
+    }
+
+    /* keep the menu from getting too wide */
+    .menu>ul {
+        gap: 0
+    }
+
+    .menu .row>a,
+    .menu>ul>li>a {
+        padding-left: 6px;
+        padding-right: 6px
+    }
 }
