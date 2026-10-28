@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Our Trustees · Subash Group of Institutions</title>
+
+    <meta name="description" content="Meet the trustees and leadership of Subash Group of Institutions.">
+
+    <link rel="shortcut icon" href="images/gallery/fav.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about.css">
+
+    <style>
+        /* Trustees Page */
+
+        .trustees-section {
+            padding: 75px 0 100px;
+            background: #eef6f2;
+        }
+
+        .trustees-heading {
+            margin-bottom: 45px;
+        }
+
+        .trustees-heading h2 {
+            margin: 0 0 14px;
+            color: #103c39;
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: clamp(34px, 4vw, 48px);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
+        }
+
+        .trustees-heading p {
+            max-width: 650px;
+            margin: 0;
+            color: #647771;
+            font-family: "DM Sans", sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .trustees-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .trustee-card {
+            min-width: 0;
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid rgba(16, 60, 57, 0.08);
+            border-radius: 14px;
+            box-shadow: 0 12px 35px rgba(16, 60, 57, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .trustee-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(16, 60, 57, 0.12);
+        }
+
+        .trustee-image {
+            width: 100%;
+            height: 340px;
+            overflow: hidden;
+            background: #dce9e3;
+        }
+
+        .trustee-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.5s ease;
+        }
+
+        .trustee-card:hover .trustee-image img {
+            transform: scale(1.035);
+        }
+
+        .trustee-info {
+            padding: 22px 22px 25px;
+            border-top: 3px solid #ff5a4e;
+        }
+
+        .trustee-info h3 {
+            margin: 0 0 8px;
+            color: #173c39;
+            font-family: "DM Sans", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .trustee-info p {
+            margin: 0;
+            color: #647771;
+            font-family: "DM Sans", sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Tablet */
+
+        @media (max-width: 900px) {
+            .trustees-section {
+                padding: 60px 0 75px;
+            }
+
+            .trustees-grid {
+                gap: 20px;
+            }
+
+            .trustee-image {
+                height: 280px;
+            }
+
+            .trustee-info {
+                padding: 18px 16px 22px;
+            }
+
+            .trustee-info h3 {
+                font-size: 16px;
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 640px) {
+            .trustees-section {
+                padding: 42px 0 55px;
+            }
+
+            .trustees-heading {
+                margin-bottom: 28px;
+            }
+
+            .trustees-heading h2 {
+                font-size: 34px;
+            }
+
+            .trustees-heading p {
+                font-size: 15px;
+            }
+
+            .trustees-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .trustee-card {
+                width: 100%;
+                max-width: 420px;
+                margin: 0 auto;
+            }
+
+            .trustee-image {
+                height: auto;
+                aspect-ratio: 4 / 3;
+            }
+
+            .trustee-info {
+                padding: 18px 20px 22px;
+            }
+
+            .trustee-info h3 {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared Header -->
+    <div id="site-header"></div>
+
+    <!-- Page Hero -->
+    <header class="pg-hero">
+        <div class="w">
+            <p class="crumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="about.html">About us</a>
+                <span>/</span>
+                Trustees
+            </p>
+
+            <h1>Our Trustees</h1>
+
+            <p class="pg-sub">
+                Meet the people guiding our vision for healthcare and education.
+            </p>
+        </div>
+    </header>
+
+    <!-- Trustees Section -->
+    <section class="trustees-section">
+        <div class="w">
+
+            <div class="trustees-heading">
+                <h2>Our Leadership Team</h2>
+                <p>
+                    Our trustees bring their knowledge, experience and commitment
+                    to supporting quality education and healthcare.
+                </p>
+            </div>
+
+            <div class="trustees-grid">
+
+                <!-- Trustee 1: Jayanthi -->
+                <article class="trustee-card">
+                    <div class="trustee-image">
+                        <img src="jayanthi.jpg" alt="Mrs. N.R. Jayanthi, Secretary" loading="lazy">
+                    </div>
+
+                    <div class="trustee-info">
+                        <h3>N.R Jayanthi M.Sc</h3>
+                        <p>Secretary</p>
+                    </div>
+                </article>
+
+                <!-- Trustee 2: Dr. Madanika -->
+                <article class="trustee-card">
+                    <div class="trustee-image">
+                        <img src="madanika.jpg" alt="Dr. Madanika, Trustee" loading="lazy">
+                    </div>
+
+                    <div class="trustee-info">
+                        <h3>Dr. Madanika MBBS, MS, OBG, MRCOG</h3>
+                        <p>Trustee</p>
+                    </div>
+                </article>
+
+                <!-- Trustee 3: Dr. Darshan Deep -->
+                <article class="trustee-card">
+                    <div class="trustee-image">
+                        <img src="darshndeep.jpg" alt="Dr. Darshan Deep, Director" loading="lazy">
+                    </div>
+
+                    <div class="trustee-info">
+                        <h3>Dr. Darshndeep.S MBBS, Ortho</h3>
+                        <p>Director</p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Shared Footer -->
+    <div id="site-footer"></div>
+
+    <script src="include.js"></script>
+
+</body>
+
+</html>
