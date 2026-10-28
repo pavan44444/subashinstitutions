@@ -1,0 +1,168 @@
+/* ==========================================
+   SUBASH INSTITUTIONS - COMMON COURSE CSS
+   ========================================== */
+
+:root {
+    --bg-color: #f2f5f3;
+    /* Soft pale sage background */
+    --card-bg: #113832;
+    /* Deep dark teal card background */
+    --text-main: #1d2d2b;
+    /* Dark slate for body text */
+    --text-light: #f7f9f8;
+    /* White / light text for cards */
+    --accent-orange: #d95338;
+    /* Warm coral / orange-red accent */
+    --border-radius: 12px;
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+.course-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- HEADER SECTION --- */
+.course-header {
+    margin-bottom: 3rem;
+    max-width: 700px;
+}
+
+.course-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+}
+
+.course-header p {
+    font-size: 1.05rem;
+    color: #4a5c59;
+}
+
+/* --- GRID LAYOUT FOR CONTENT CARDS --- */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+/* --- FEATURE CARDS (Deep Teal with Orange Border) --- */
+.course-card {
+    background-color: var(--card-bg);
+    color: var(--text-light);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--accent-orange);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(17, 56, 50, 0.15);
+}
+
+.course-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-light);
+}
+
+.course-card p {
+    font-size: 0.95rem;
+    color: #d1dbd8;
+}
+
+/* --- ICON WRAPPER INSIDE CARDS --- */
+.card-icon {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: var(--text-light);
+    font-size: 1.2rem;
+}
+
+/* --- GENERAL CONTENT SECTIONS (Eligibility, Scope, etc.) --- */
+.course-section {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.course-section h2 {
+    font-size: 1.5rem;
+    color: var(--card-bg);
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.course-section h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-orange);
+}
+
+.course-section ul {
+    list-style-type: none;
+    margin-top: 1rem;
+}
+
+.course-section ul li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: #334e48;
+}
+
+.course-section ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: var(--accent-orange);
+    font-weight: bold;
+}
+
+/* --- BADGE / META INFO (Duration, Eligibility details) --- */
+.meta-badge {
+    display: inline-block;
+    background-color: #e5edea;
+    color: var(--card-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
