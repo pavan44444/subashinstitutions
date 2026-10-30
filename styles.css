@@ -2655,7 +2655,8 @@ footer p a:hover {
     border-radius: 14px 0 0 14px;
     box-shadow: -6px 8px 22px rgba(0, 0, 0, .28);
     transition: padding .25s, background .25s;
-    background: #bb1809
+    background: #bb1809;
+    /* background-color: green; */
 }
 
 .apply-tab:hover {
@@ -4203,4 +4204,237 @@ footer::before {
     .course-page .facilities-gallery figure {
         aspect-ratio: 4 / 3;
     }
+}
+
+/* ===== HERO (final: replaces every earlier hero block) ===== */
+.hero {
+    position: relative !important;
+    overflow: hidden;
+    background: #0e4a47;
+    padding: 0 !important;
+    min-height: 0 !important
+}
+
+.hero-slider {
+    position: relative !important;
+    display: block;
+    width: 100%;
+    height: clamp(500px, 86vh, 760px) !important
+}
+
+.hero-slide {
+    position: absolute !important;
+    inset: 0 !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .6s ease, visibility .6s;
+    display: flex !important;
+    flex-direction: row !important;
+    /* this was the missing piece */
+    align-items: flex-end !important;
+    /* text sits at the bottom */
+    justify-content: flex-start !important;
+    /* and at the left */
+    padding: 0 max(4%, calc((100% - 1200px)/2)) 70px !important;
+}
+
+.hero-slide.active {
+    opacity: 1 !important;
+    visibility: visible;
+    z-index: 1
+}
+
+.slide-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 820px
+}
+
+.slide-content>* {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    float: none !important;
+    display: block
+}
+
+.slide-content h1 {
+    margin: 0 0 12px !important;
+    font: 700 clamp(14px, 1.6vw, 20px)/1.2 'DM Sans', sans-serif !important;
+    letter-spacing: .14em;
+    color: #ffd23f;
+    max-width: none !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .6)
+}
+
+.slide-content h2 {
+    margin: 0 0 28px !important;
+    font: 800 clamp(28px, 3.8vw, 54px)/1.1 'Bricolage Grotesque', sans-serif !important;
+    letter-spacing: -.02em;
+    color: #fff;
+    max-width: none !important;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, .6)
+}
+
+.slide-content .acts {
+    margin: 0 !important;
+    display: flex !important
+}
+
+.slide-content .btn {
+    color: #0e4a47
+}
+
+@media(max-width:640px) {
+    .hero-slider {
+        height: min(78vh, 540px) !important
+    }
+
+    .hero-slide {
+        padding-bottom: 50px !important
+    }
+
+    .slide-content h2 {
+        margin-bottom: 22px !important
+    }
+}
+
+.slide-content:has(h1) h1 {
+    font-size: clamp(30px, 4.6vw, 64px) !important;
+    letter-spacing: .02em !important;
+    line-height: 1.05 !important;
+}
+
+.slide-content:has(h1) h2 {
+    font-size: clamp(18px, 2vw, 28px) !important;
+    font-weight: 500 !important;
+    max-width: 34ch !important;
+    margin-bottom: 26px !important;
+}
+
+/* hero text: dark teal panel, white text, coral button */
+.slide-content {
+    background: rgba(14, 74, 71, .92);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    padding: 28px 34px 32px !important;
+    border-radius: 22px;
+    border-left: 6px solid #ff5a4e;
+    width: auto !important;
+    max-width: 700px !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+}
+
+/* small label above the heading (slide 1) */
+.slide-content h1,
+.slide-content:has(h1) h1 {
+    color: #ffd23f !important;
+    text-shadow: none !important;
+    font-size: clamp(24px, 3.4vw, 46px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: .02em !important;
+    margin: 0 0 12px !important;
+}
+
+/* main sentence */
+.slide-content h2,
+.slide-content:has(h1) h2 {
+    color: #fff !important;
+    text-shadow: none !important;
+    font-size: clamp(22px, 2.8vw, 38px) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    max-width: none !important;
+    margin: 0 0 24px !important;
+}
+
+/* button */
+.slide-content .btn {
+    background: #ff5a4e !important;
+    border-color: #ff5a4e !important;
+    color: #fff !important;
+}
+
+.slide-content .btn:hover {
+    background: #fff !important;
+    border-color: #fff !important;
+    color: #0e4a47 !important;
+}
+
+@media(max-width:640px) {
+    .slide-content {
+        padding: 20px 20px 24px !important;
+        border-radius: 16px;
+        max-width: 100% !important
+    }
+}
+
+.slide-content h1 {
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .8), 0 4px 18px rgba(0, 0, 0, .7) !important
+}
+
+.slide-content h2 {
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .8), 0 4px 18px rgba(0, 0, 0, .7) !important
+}
+
+.slide-content .btn {
+    background: #ff5a4e !important;
+    border-color: #ff5a4e !important;
+    color: #fff !important
+}
+
+/* no panel: plain text on the photo */
+.slide-content {
+    background: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 820px !important;
+}
+
+/* small line above the heading (slide 1) */
+.slide-content h1,
+.slide-content:has(h1) h1 {
+    color: #fff !important;
+    font-size: clamp(24px, 3.4vw, 46px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: .02em !important;
+    margin: 0 0 12px !important;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, .85), 0 0 18px rgba(0, 0, 0, .65), 0 0 36px rgba(0, 0, 0, .45) !important;
+}
+
+/* main sentence */
+.slide-content h2,
+.slide-content:has(h1) h2 {
+    color: #fff !important;
+    font-size: clamp(22px, 2.8vw, 38px) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    max-width: none !important;
+    margin: 0 0 24px !important;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, .85), 0 0 18px rgba(0, 0, 0, .65), 0 0 36px rgba(0, 0, 0, .45) !important;
+}
+
+/* button */
+.slide-content .btn {
+    background: #ff5a4e !important;
+    border-color: #ff5a4e !important;
+    color: #fff !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .35) !important;
+}
+
+.slide-content .btn:hover {
+    background: #fff !important;
+    border-color: #fff !important;
+    color: #0e4a47 !important;
 }
