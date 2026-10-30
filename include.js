@@ -1,14 +1,29 @@
 /* include.js: loads components/header.html and components/footer.html,
+   fixes their links so they work from ANY folder (home page, Courses/ ...),
    then loads script.js.
-   If components/footer.html on disk is incomplete (fewer than 4 columns),
-   a built-in copy of the full footer is used instead. */
+   Keep this file in the main site folder, next to index.html. */
 (function () {
-    const base = new URL(".", document.currentScript.src); // folder that holds include.js
+    const base = new URL(".", document.currentScript.src); // main site folder (holds include.js)
 
     const parts = [
         { id: "site-header", file: "components/header.html" },
         { id: "site-footer", file: "components/footer.html" }
     ];
+
+    /* Where each page really lives now (old name -> new location) */
+    const PAGES = {
+        "about": "about.html",
+        "chairman": "chairman-message.html",
+        "chairman-message": "chairman-message.html",
+        "bsc": "Courses/bsc-nursing.html",
+        "msc": "Courses/msc-nursing.html",
+        "pbbsc": "Courses/pb-bsc-nursing.html",
+        "gnm": "Courses/gnm-nursing.html",
+        "diploma-in-pharmacy": "Courses/diploma-in-pharmacy.html",
+        "bsc-medical-imaging": "Courses/bsc-medical-imaging-technology.html",
+        "diploma-ot-technology": "Courses/diploma-in-ot-technology.html",
+        "diploma-ophtholmic": "Courses/diploma-in-ophthalmic-technic.html"
+    };
 
     const FOOTER_FALLBACK = `
 <footer id="contact">
@@ -84,6 +99,31 @@
         );
     }
 
+    /* Make every link / image in the header and footer point to the right
+       place no matter which folder the current page is in. */
+    function fixLinks(root) {
+        root.querySelectorAll("a[href], img[src]").forEach(function (el) {
+            const attr = el.tagName === "A" ? "href" : "src";
+            const raw = el.getAttribute(attr);
+            if (!raw || /^(https?:|mailto:|tel:|#|\/\/|data:|javascript:)/i.test(raw)) return;
+
+            const hashAt = raw.indexOf("#");
+            const path = hashAt === -1 ? raw : raw.slice(0, hashAt);
+            const hash = hashAt === -1 ? "" : raw.slice(hashAt);
+            if (!path) return;
+
+            // Links are written relative to the MAIN site folder (where include.js is),
+            // e.g. "Courses/msc-nursing.html", and resolved against that folder below.
+            let target = path;
+            const file = path.split("/").pop();
+            const key = file.replace(/\.(php|html)$/i, "");
+            if (PAGES[key]) target = PAGES[key];                 // known page: use its real location
+            else if (path.indexOf("/") === -1) target = path.replace(/\.php$/i, ".html");
+            const u = new URL(target, base);
+            el.setAttribute(attr, u.pathname + u.search + hash);
+        });
+    }
+
     function load(part) {
         const target = document.getElementById(part.id);
         if (!target) return Promise.resolve();
@@ -106,15 +146,16 @@
 
                 // The footer must have 4 columns. If not, use the built-in footer.
                 if (part.id === "site-footer" && target.querySelectorAll(".f-col").length < 4) {
-                    console.warn("components/footer.html is incomplete (" +
-                        target.querySelectorAll(".f-col").length + " of 4 columns). Using the built-in footer.");
+                    console.warn("components/footer.html is incomplete. Using the built-in footer.");
                     target.innerHTML = FOOTER_FALLBACK;
                 }
+                fixLinks(target);
             })
             .catch(function (err) {
                 if (part.id === "site-footer") {
                     console.warn("Could not load footer.html (" + err.message + "). Using the built-in footer.");
                     target.innerHTML = FOOTER_FALLBACK;
+                    fixLinks(target);
                 } else {
                     warn(target, "Could not load <b>" + part.file + "</b>: " + err.message);
                     console.error(err);
@@ -123,9 +164,8 @@
     }
 
     function markActivePage() {
-        const page = location.pathname.split("/").pop() || "index.html";
         document.querySelectorAll("#site-header .menu a").forEach(function (a) {
-            if (a.getAttribute("href") === page) a.classList.add("active");
+            if (a.pathname === location.pathname) a.classList.add("active");
         });
     }
 
