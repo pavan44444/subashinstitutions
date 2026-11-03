@@ -1,0 +1,182 @@
+/* ==========================================
+   SUBASH INSTITUTIONS - COMMON INSTITUTION PAGE THEME
+   Used by: pharmacy.html, nursing-school.html,
+            nursing-college.html, hospital.html
+   Loads AFTER styles.css. Everything is scoped to .ip-page
+   so the shared header, footer and home page are not affected.
+   ========================================== */
+
+.ip-page {
+  --bg-color: #f2f5f3;      /* soft pale sage background */
+  --card-bg: #113832;       /* deep dark teal */
+  --text-main: #1d2d2b;     /* dark slate body text */
+  --text-light: #f7f9f8;    /* light text on dark cards */
+  --accent: #d95338;        /* warm coral / orange-red accent */
+  --radius: 12px;
+
+  background: var(--bg-color);
+  color: var(--text-main);
+  padding: 3rem 0 4.5rem;
+  line-height: 1.6;
+}
+
+.ip-page .ip-wrap { width: min(1200px, 92%); margin: 0 auto; }
+
+/* --- TITLE --- */
+.ip-page .ip-head { margin-bottom: 1.75rem; max-width: 760px; }
+.ip-page .ip-crumb { font-size: .9rem; color: #4a5c59; margin-bottom: .75rem; }
+.ip-page .ip-crumb a { color: var(--accent); font-weight: 600; }
+.ip-page .ip-crumb a:hover { text-decoration: underline; }
+.ip-page .ip-head h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+  letter-spacing: -.02em;
+}
+.ip-page .ip-head p { font-size: 1.05rem; color: #4a5c59; }
+
+/* --- THE ONE IMAGE (shown in full, not cropped) --- */
+.ip-page .ip-photo {
+  margin: 0 0 2rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 2px solid var(--accent);
+  background: linear-gradient(135deg, #113832, #1d5a52);
+  min-height: 180px;
+  box-shadow: 0 6px 18px rgba(17, 56, 50, .12);
+}
+.ip-page .ip-photo img { display: block; width: 100%; height: auto; }
+
+/* --- QUICK FACT BADGES --- */
+.ip-page .ip-meta { margin-bottom: 1.25rem; }
+.ip-page .ip-badge {
+  display: inline-block;
+  background: #e5edea;
+  color: var(--card-bg);
+  padding: .5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: .9rem;
+  margin: 0 1rem 1rem 0;
+}
+
+/* --- CONTENT SECTIONS --- */
+.ip-page .ip-sec {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .03);
+}
+.ip-page .ip-sec h2 {
+  font-size: 1.5rem;
+  color: var(--card-bg);
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: .5rem;
+}
+.ip-page .ip-sec h2::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 50px; height: 3px;
+  background: var(--accent);
+}
+.ip-page .ip-sec p { color: #334e48; margin-top: .5rem; }
+.ip-page .ip-sec ul { list-style: none; margin-top: 1rem; padding: 0; }
+.ip-page .ip-sec ul li { position: relative; padding-left: 1.75rem; margin-bottom: .75rem; color: #334e48; }
+.ip-page .ip-sec ul li::before { content: "✔"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+
+/* --- DETAILS TABLE (Eligibility, Affiliated, Duration ...) --- */
+.ip-page .ip-table {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid #dbe5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .03);
+  margin: 0 0 2rem;
+}
+.ip-page .ip-row { display: grid; grid-template-columns: 240px 1fr; }
+.ip-page .ip-row:not(:last-child) { border-bottom: 1px solid #e3ebe8; }
+.ip-page .ip-row dt {
+  background: var(--card-bg);
+  color: var(--text-light);
+  border-left: 5px solid var(--accent);
+  padding: 1.1rem 1.5rem;
+  font-weight: 700;
+}
+.ip-page .ip-row dd { margin: 0; padding: 1.1rem 1.5rem; color: #334e48; }
+.ip-page .ip-row dd p + p { margin-top: .5rem; }
+
+/* --- FEATURE BOXES (facilities, highlights) --- */
+.ip-page .ip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin: 1.25rem 0 0;
+}
+.ip-page .ip-box {
+  background: var(--card-bg);
+  color: var(--text-light);
+  padding: 1.75rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--accent);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.ip-page .ip-box:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(17, 56, 50, .18); }
+.ip-page .ip-ico {
+  width: 45px; height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.ip-page .ip-box h3 { font-size: 1.15rem; font-weight: 700; color: var(--text-light); }
+.ip-page .ip-box p { font-size: .95rem; color: #d1dbd8; margin-top: .4rem; }
+
+/* --- LINK TO A RELATED PROGRAMME PAGE --- */
+.ip-page .ip-link {
+  display: inline-block;
+  margin-top: 1.25rem;
+  padding: .75rem 1.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  transition: transform .2s ease;
+}
+.ip-page .ip-link:hover { transform: translateY(-3px); }
+
+/* --- CALL TO ACTION --- */
+.ip-page .ip-cta {
+  background: var(--card-bg);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  border: 2px solid var(--accent);
+  padding: 2rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1.5rem; flex-wrap: wrap;
+}
+.ip-page .ip-cta h2 { font-size: 1.5rem; color: var(--text-light); margin-bottom: .25rem; }
+.ip-page .ip-cta p { color: #d1dbd8; }
+.ip-page .ip-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+.ip-page .ip-btn {
+  display: inline-block;
+  padding: .75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  border: 2px solid var(--accent);
+  color: #fff;
+  transition: transform .2s ease;
+}
+.ip-page .ip-btn.primary { background: var(--accent); }
+.ip-page .ip-btn:hover { transform: translateY(-3px); }
+
+@media (max-width: 700px) {
+  .ip-page { padding: 2rem 0 3.5rem; }
+  .ip-page .ip-row { grid-template-columns: 1fr; }
+  .ip-page .ip-sec { padding: 1.75rem 1.25rem; }
+  .ip-page .ip-cta { padding: 1.5rem; }
+}
